@@ -1,0 +1,62 @@
+/dts-v1/;
+
+#include "mt7981-nradio-emmc.dtsi"
+
+/ {
+	model = "HC-WT9108";
+
+	aliases {
+		led-boot = &led_status;
+		led-failsafe = &led_status;
+		led-running = &led_status;
+		led-upgrade = &led_status;
+	};
+
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
+
+		cpepower {
+			gpio-export,name = "cpe-pwr";
+			gpio-export,output = <0>;
+			gpios = <&pio 31 GPIO_ACTIVE_LOW>;
+		};
+
+		usbpower {
+			gpio-export,name = "usb-pwr";
+			gpio-export,output = <0>;
+			gpios = <&pio 27 GPIO_ACTIVE_LOW>;
+		};
+
+		cpesel0 {
+			gpio-export,name = "cpe-sel0";
+			gpio-export,output = <1>;
+			gpios = <&pio 30 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	gpio-leds {
+		compatible = "gpio-leds";
+
+		led_status: status {
+			label = "hc:blue:status";
+			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
+		};
+
+		cmode5 {
+			label = "hc:blue:cmode5";
+			gpios = <&pio 11 GPIO_ACTIVE_LOW>;
+		};
+
+		cmode4 {
+			label = "hc:blue:cmode4";
+			gpios = <&pio 12 GPIO_ACTIVE_LOW>;
+		};
+
+		wifi {
+			label = "hc:blue:wifi";
+			gpios = <&pio 13 GPIO_ACTIVE_LOW>;
+		};
+	};
+};
+//CopyRight NRadio Update By qgzqgz
